@@ -8,14 +8,15 @@ pipeline {
         }
         stage('build'){
             steps {
-                sh '''npm install
-                    ng build '''
+                sh '''apt-get install npm
+                      ng build
+                   '''
             }
         }
         stage('deploy'){
             steps {
                 sh '''
-                    aws s3 cp --recursive dist/angular-frontend/ s3://cbz-frontend-project-buckets-for-storing-files/
+                    aws s3 cp --recursive dist/angular-frontend/ s3://cbz-frontend-project-buckets-for-storing-files /
                 '''
             }
         }
